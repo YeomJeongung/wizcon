@@ -14,7 +14,7 @@ const netitem = ref([
     ktitle: ''
   },
   {
-    etitle: '플랫폼 사업 전반의 축적 경험 활용',
+    etitle: '플랫폼 사업 전반의<br />축적 경험 활용',
     ktitle: ''
   }
 ])
@@ -80,7 +80,8 @@ const handleMouseLeave = () => {
         }"
       >
         <span class="txt-center"
-          >온라인 및 O2O 비즈니스에 대한 요구사항을 효과적으로 지원하여 효율적인 사업 추진이 가능한
+          >온라인 및 O2O 비즈니스에 대한 요구사항을 효과적으로 지원하여 효율적인 사업 추진이
+          가능한<br />
           빅데이터 기반의 매칭 플랫폼 입니다.</span
         >
       </div>
