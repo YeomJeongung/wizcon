@@ -2,24 +2,29 @@
 import { ref, reactive } from 'vue'
 const netitem = ref([
   {
-    etitle: 'DEVELOPMENT AND NETWORKING',
-    ktitle: '비즈니스 네트워킹'
+    etitle: 'O2O 형태의 다양한 비즈니스 모델<br />적용/추진 가능',
+    ktitle: ''
   },
   {
-    etitle: 'TRAINING PROGRAMS',
-    ktitle: '교육 및 훈련 프로그램'
+    etitle: '솔루션 도입으로 비즈니스/온라인 환경 구축 위한 비용 감소',
+    ktitle: ''
   },
   {
-    etitle: 'PROVISION OF DATA',
-    ktitle: '정보 및 자료 제공'
+    etitle: '‘빅데이터 기반 매칭 알고리즘’을 통한 높은 매칭 신뢰도 제공',
+    ktitle: ''
+  },
+  {
+    etitle: '플랫폼 사업 전반의 축적 경험 활용',
+    ktitle: ''
   }
 ])
 
-import image1 from '@/assets/images/icon.svg'
-import image2 from '@/assets/images/icon.svg'
-import image3 from '@/assets/images/icon.svg'
+import image1 from '@/assets/images/icon_analyse.svg'
+import image2 from '@/assets/images/icon_dollar.svg'
+import image3 from '@/assets/images/icon_chart.svg'
+import image4 from '@/assets/images/icon_handshake.svg'
 
-const imgPath = [image1, image2, image3]
+const imgPath = [image1, image2, image3, image4]
 
 //mouse 오버시
 const targets = ref([])
@@ -52,7 +57,7 @@ const handleMouseLeave = () => {
           leaveClass: 'fadeoutleft opacity0'
         }"
       >
-        <span class="red-line">서비스분야</span>
+        <span class="red-line">WIZCON Matching Platform</span>
       </h2>
 
       <div
@@ -63,7 +68,8 @@ const handleMouseLeave = () => {
         }"
       >
         <span class="txt-center mt3"
-          >협력과 지식 공유를 촉진하여<br />전반적인 산업 환경을 개선하겠습니다.</span
+          >위즈컨 W-Platform을 통한 최적의 플랫폼 서비스 구축으로<br />
+          수요/공급 기반 매칭 비즈니스의 성공을 실현할 수 있습니다.</span
         >
       </div>
       <div
@@ -74,7 +80,8 @@ const handleMouseLeave = () => {
         }"
       >
         <span class="txt-center"
-          >환경 친화적인 기술과 관행을 촉진하며, 사회적 책임을 다하는 기업 문화를 선도합니다.</span
+          >온라인 및 O2O 비즈니스에 대한 요구사항을 효과적으로 지원하여 효율적인 사업 추진이 가능한
+          빅데이터 기반의 매칭 플랫폼 입니다.</span
         >
       </div>
       <div
@@ -97,8 +104,8 @@ const handleMouseLeave = () => {
             <img :src="`${imgPath[idx]}`" width="70" />
           </span>
           <div class="txt flx-col flx-v">
-            <span>{{ item.etitle }}</span>
-            <span class="font1-5 bold">{{ item.ktitle }}</span>
+            <span v-if="item.etitle" v-html="item.etitle"></span>
+            <span class="font1-5 bold" v-if="item.ktitle" v-html="item.ktitle"></span>
           </div>
         </div>
       </div>

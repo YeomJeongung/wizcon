@@ -5,6 +5,10 @@ import Dialog from 'primevue/dialog'
 
 import noimg from '@/assets/images/logo.svg'
 
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Pagination } from 'swiper/modules'
+const swiperModules = [Pagination]
+
 const detailContents = ref('')
 const detailTitle = ref('')
 const dialogVisible = ref(false)
@@ -66,6 +70,7 @@ query {
 `
 
 const items = ref([])
+const noitems = ref(false)
 onMounted(() => {
   fetch('https://api.monday.com/v2', {
     method: 'post',
@@ -81,6 +86,9 @@ onMounted(() => {
     .then((res) => res.json())
     .then((res) => {
       items.value = res.data.boards[0].items_page
+      if (res.data.boards[0].items_page.items.length == 0) {
+        noitems.value = true
+      }
     })
 })
 
@@ -115,7 +123,7 @@ const returnJsonDataFile2 = (data, target) => {
         leaveClass: 'fadeoutleft opacity0'
       }"
     >
-      <span class="red-line">사업안내</span>
+      <span class="red-line">WORKS</span>
     </h2>
 
     <div class="pdl11">
@@ -126,9 +134,10 @@ const returnJsonDataFile2 = (data, target) => {
           leaveClass: 'fadeoutleft opacity0'
         }"
       >
-        협력과 지식 공유를 촉진하여<br />전반적인 산업 환경을 개선하겠습니다.
+        다양한 분야의 프로젝트 수행 경험과 전문가들의 개발 노하우로<br />모두가 만족하는 결과를
+        만듭니다.
       </div>
-
+      <!--
       <div
         class="font1 mt3 color999 w2animation animation-duration-1000 animation-delay-1000 animation-ease-in-out"
         v-animateonscroll.once="{
@@ -138,71 +147,102 @@ const returnJsonDataFile2 = (data, target) => {
       >
         환경 친화적인 기술과 관행을 촉진하며, 사회적 책임을 다하는 기업 문화를 선도합니다.
       </div>
+      -->
     </div>
+
     <div
+      v-if="!noitems"
       class="w100 animation-duration-1000 animation-delay-1000 animation-ease-in-out"
       v-animateonscroll.once="{ enterClass: 'fadein opacity0', leaveClass: 'fadeout opacity0' }"
     >
       <div class="webzins flx-row flx-wrap gap3">
-        <template v-for="(item, idx) in items" :key="idx">
-          <div
-            class="item flx-row flx-v gap2"
-            style="width: calc(50% - 1.5rem)"
-            v-for="(itemIn, idxs) in item"
-            :key="idxs"
-          >
-            <div class="img">
-              <template v-if="returnJsonDataFile(itemIn.column_values[4].value) == true">
-                <Image
-                  :src="`${returnJsonDataFile2(itemIn.assets, 'public_url')}`"
-                  alt="Image"
-                  preview
-                />
-              </template>
-              <template v-else>
-                <div class="noimg">
-                  <Image :src="noimg" alt="Image" />
+        <swiper
+          :slides-per-view="2"
+          :space-between="30"
+          :speed="500"
+          :navigation="false"
+          :autoplay="{
+            delay: 3500,
+            disableOnInteraction: false
+          }"
+          :pagination="{
+            clickable: true,
+            renderBullet: function (index, className) {
+              return `<span class='${className} custom_blul1' data='${index}'></span>`
+            }
+          }"
+          class="works_slider"
+          :modules="swiperModules"
+        >
+          <template v-for="(item, idx) in items" :key="idx">
+            <template v-for="(itemIn, idxs) in item" :key="idxs">
+              <swiper-slide>
+                <div class="item flx-row flx-v flx-v-t gap2">
+                  <div class="img">
+                    <template v-if="returnJsonDataFile(itemIn.column_values[4].value) == true">
+                      <Image
+                        :src="`${returnJsonDataFile2(itemIn.assets, 'public_url')}`"
+                        alt="Image"
+                        preview
+                      />
+                    </template>
+                    <template v-else>
+                      <div class="noimg">
+                        <Image :src="noimg" alt="Image" />
+                      </div>
+                    </template>
+                  </div>
+                  <div class="info flx-col h100">
+                    <span class="red mb1 txtline t_1">{{
+                      returnJsonData(itemIn.column_values[2].value, 'date')
+                    }}</span>
+                    <template v-if="itemIn.column_values[3].value == null">
+                      <h3 :class="['font1-5 mb1 txtline t_2']">
+                        {{ itemIn.name }}
+                      </h3>
+                    </template>
+                    <h3
+                      v-else
+                      :class="[
+                        'font1-5 mb1 txtline t_2',
+                        JSON.parse(itemIn.column_values[3].value)?.text != '' ? 'hand' : ''
+                      ]"
+                      @click="detailDialog(itemIn.column_values[3].value, itemIn.name)"
+                      v-tooltip.top="{
+                        value:
+                          JSON.parse(itemIn.column_values[3].value)?.text != '' ? 'Detail' : '',
+                        pt: {
+                          arrow: {
+                            style: {
+                              borderTopColor: '#ef4136'
+                            }
+                          },
+                          text: 'bgred'
+                        }
+                      }"
+                    >
+                      {{ itemIn.name }}
+                    </h3>
+                    <div class="color999 txtline t_3">
+                      {{ itemIn.column_values[1].value?.replace(/"/g, '') }}
+                    </div>
+                  </div>
                 </div>
-              </template>
-            </div>
-            <div class="info flx-col h100">
-              <span class="red mb1 txtline t_1">{{
-                returnJsonData(itemIn.column_values[2].value, 'date')
-              }}</span>
-              <template v-if="itemIn.column_values[3].value == null">
-                <h3 :class="['font1-5 mb1 txtline t_2']">
-                  {{ itemIn.name }}
-                </h3>
-              </template>
-              <h3
-                v-else
-                :class="[
-                  'font1-5 mb1 txtline t_2',
-                  JSON.parse(itemIn.column_values[3].value)?.text != '' ? 'hand' : ''
-                ]"
-                @click="detailDialog(itemIn.column_values[3].value, itemIn.name)"
-                v-tooltip.top="{
-                  value: JSON.parse(itemIn.column_values[3].value)?.text != '' ? 'Detail' : '',
-                  pt: {
-                    arrow: {
-                      style: {
-                        borderTopColor: '#ef4136'
-                      }
-                    },
-                    text: 'bgred'
-                  }
-                }"
-              >
-                {{ itemIn.name }}
-              </h3>
-              <div class="color999 txtline t_3">
-                {{ itemIn.column_values[1].value.replace(/"/g, '') }}
-              </div>
-            </div>
-          </div>
-        </template>
+              </swiper-slide>
+            </template>
+          </template>
+        </swiper>
       </div>
     </div>
+
+    <div
+      v-else
+      class="nolist w100 animation-duration-1000 animation-delay-1000 animation-ease-in-out"
+      v-animateonscroll.once="{ enterClass: 'fadein opacity0', leaveClass: 'fadeout opacity0' }"
+    >
+      no items
+    </div>
+
     <br />
 
     <Dialog

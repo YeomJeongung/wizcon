@@ -7,37 +7,43 @@ const swiperModules = [Pagination, Navigation]
 
 const subslider = ref([
   {
-    etitle: 'business1',
-    ktitle: '비즈니스 네트워킹',
+    etitle: '‘매칭 플랫폼’ 및 통합 인증 서비스 구축/유지보수',
+    ktitle: '플랫폼 Business',
     contents:
-      '여기에 글을 적어요. 어떤내용이 들어갈까요? 여기에 글을 적어요. 어떤내용이 들어갈까요? 여기에 글을 적어요. 어떤내용이 들어갈까요?'
+      '교육, 레슨, 채용, 의료, 사무 등의 다양한 분야에서 위즈컨 ‘매칭 플랫폼’이 활용된 플랫폼 비즈니스를 실현하고 있으며, ‘Keycloak’ 솔루션 통해 SSO/인증 구현과 개인정보보호, 위치정보보호법을 준수한 통한 통합 인증 서비스를 구축/유지보수합니다.'
   },
   {
-    etitle: 'business2',
-    ktitle: '비즈니스 네트워킹',
+    etitle: 'IT 컨설팅, 시스템 통합, 시스템 운영',
+    ktitle: 'SI/SM Business',
     contents:
-      '여기에 글을 적어요. 어떤내용이 들어갈까요? 여기에 글을 적어요. 어떤내용이 들어갈까요? 여기에 글을 적어요. 어떤내용이 들어갈까요?'
+      '웹/앱 환경에서의 AS, 쇼핑몰, 챗봇 등 대고객 B2C 서비스 개발 및 유지보수를 전문으로, 서비스 기획, 디자인, 퍼블리싱부터 개발까지 모든 단계를 자사 인력으로 보유하고 있어 고객의 요구를 신속하게 반영할 수 있습니다.<br /><br />또한, 고객사가 보유한 시스템을 위즈컨으로 이관하거나 고객사 내부 시스템 운영을 위해 자사와 협력사, 프리랜서를 파견하여 최상의 서비스를 제공합니다.'
   },
   {
-    etitle: 'business3',
-    ktitle: '비즈니스 네트워킹',
-    contents:
-      '여기에 글을 적어요. 어떤내용이 들어갈까요? 여기에 글을 적어요. 어떤내용이 들어갈까요? 여기에 글을 적어요. 어떤내용이 들어갈까요?'
-  },
-  {
-    etitle: 'business3',
-    ktitle: '비즈니스 네트워킹',
-    contents:
-      '여기에 글을 적어요. 어떤내용이 들어갈까요? 여기에 글을 적어요. 어떤내용이 들어갈까요? 여기에 글을 적어요. 어떤내용이 들어갈까요?'
+    etitle: '기획 및 퍼블리싱, Front/Back-end 개발 기술 보유',
+    ktitle: '보유 기술',
+    contents: `
+    <ul class="liststyle">
+      <li>서비스 기획 및 UI/UX, 퍼블리싱 • 프로그래밍</li>
+      <li>프로그래밍
+        <ol>
+          <li>Front : Vue.js, Java Script, jQuery 포함</li>
+          <li>Server : Spring 기반 프레임워크(전자정부프레임워크 등), Spring Boot 등</li>
+          <li>기타 : Node.js, Express.js</li>
+          <li>앱 : Hybird 앱개발</li>
+        </ol>  
+      </li>
+      <li>Database : Oracle, MS-SQL, MariaDB, mySQL 등</li>
+      <li>TA, AA</li>
+    </ul>
+    `
   }
 ])
 
-import image1 from '@/assets/images/business.jpg'
-import image2 from '@/assets/images/business.jpg'
-import image3 from '@/assets/images/business.jpg'
-import image4 from '@/assets/images/business.jpg'
+import image1 from '@/assets/images/business_01.jpg'
+import image2 from '@/assets/images/business_02.jpg'
+import image3 from '@/assets/images/business_03.jpg'
 
-const imgPath = [image1, image2, image3, image4]
+const imgPath = [image1, image2, image3]
 
 //mouse 오버시
 const targets = ref([])
@@ -64,18 +70,19 @@ const handleMouseLeave = () => {
         leaveClass: 'fadeoutleft opacity0'
       }"
     >
-      <span class="red-line">사업안내</span>
+      <span class="red-line">BUSINESS</span>
     </h2>
 
     <div class="pdl11">
       <div
-        class="font2-5 bold lineh w2animation animation-duration-1000 animation-delay-1000 animation-ease-in-out"
+        class="font2-3 bold lineh w2animation animation-duration-1000 animation-delay-1000 animation-ease-in-out"
         v-animateonscroll.once="{
           enterClass: 'fadeinleft opacity0',
           leaveClass: 'fadeoutleft opacity0'
         }"
       >
-        협력과 지식 공유를 촉진하여<br />전반적인 산업 환경을 개선하겠습니다.
+        온라인 매칭 플랫폼 활용한 사업 추진 및<br />B2C 시스템 구축/유지보수에 전문화된 역량을
+        가지고 있습니다.
       </div>
 
       <div
@@ -85,7 +92,7 @@ const handleMouseLeave = () => {
           leaveClass: 'fadeoutleft opacity0'
         }"
       >
-        환경 친화적인 기술과 관행을 촉진하며, 사회적 책임을 다하는 기업 문화를 선도합니다.
+        다양한 산업 전반에 걸친 정보시스템 컨설팅 및 구축 경험을 보유하였습니다.
       </div>
     </div>
   </div>
@@ -115,7 +122,7 @@ const handleMouseLeave = () => {
                 <span>{{ item.etitle }}</span>
               </div>
               <div :class="[targetIdxRef != idx ? 'off' : 'on', 'info-bottom']">
-                <span>{{ item.contents }}</span>
+                <span v-html="item.contents"></span>
               </div>
               <div class="item" :style="`background-image: url(${imgPath[idx]})`"></div>
               <div ref="overEl" :class="[targetIdxRef != idx ? 'off' : 'on', 'overEl']"></div>
