@@ -137,6 +137,7 @@ const returnJsonDataFile2 = (data, target) => {
         다양한 분야의 프로젝트 수행 경험과 전문가들의 개발 노하우로<br />모두가 만족하는 결과를
         만듭니다.
       </div>
+
       <!--
       <div
         class="font1 mt3 color999 w2animation animation-duration-1000 animation-delay-1000 animation-ease-in-out"
@@ -145,7 +146,7 @@ const returnJsonDataFile2 = (data, target) => {
           leaveClass: 'fadeoutleft opacity0'
         }"
       >
-        환경 친화적인 기술과 관행을 촉진하며, 사회적 책임을 다하는 기업 문화를 선도합니다.
+        Dream it! Make it happen
       </div>
       -->
     </div>
@@ -168,8 +169,11 @@ const returnJsonDataFile2 = (data, target) => {
           :pagination="{
             clickable: true,
             renderBullet: function (index, className) {
-              return `<span class='${className} custom_blul1' data='${index}'></span>`
+              return `<span class='${className} custom_blul1_num' data='${index}'>${index + 1}</span>`
             }
+            /*
+            type: 'progressbar'
+            */
           }"
           class="works_slider"
           :modules="swiperModules"
