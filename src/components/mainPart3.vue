@@ -68,7 +68,9 @@ const handleMouseLeave = () => {
         }"
       >
         <span class="txt-center mt3"
-          >위즈컨 W-Platform을 통한 최적의 플랫폼 서비스 구축으로<br />
+          ><span style="font-size: 2.2rem"
+            >위즈컨 W-Platform을 통한 최적의 플랫폼 서비스 구축으로</span
+          ><br />
           수요/공급 기반 매칭 비즈니스의 성공을 실현할 수 있습니다.</span
         >
       </div>

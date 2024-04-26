@@ -411,6 +411,9 @@ ol[role='list'] {
   .icon {
     margin-bottom: 2rem;
     filter: invert(100%);
+    img {
+      width: 3.5rem;
+    }
   }
   .txt {
     line-height: 1.8;
