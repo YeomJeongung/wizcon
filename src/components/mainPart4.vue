@@ -159,6 +159,7 @@ const returnJsonDataFile2 = (data, target) => {
       <div class="webzins flx-row flx-wrap gap3">
         <swiper
           :slides-per-view="2"
+          :slides-per-group="2"
           :space-between="30"
           :speed="500"
           :navigation="false"

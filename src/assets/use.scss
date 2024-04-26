@@ -329,7 +329,7 @@ ol[role='list'] {
 .part1-txt {
   position: absolute;
   z-index: 2;
-  bottom: 20%;
+  bottom: 13%;
   color: var(--white);
 }
 .part3-wrap {
@@ -681,17 +681,14 @@ ol[role='list'] {
   }
 }
 .works_p_slider {
-  .swiper-wrapper {
-    padding-top: 4rem;
-  }
   .swiper-pagination {
-    height: 0.063rem;
+    height: 0.125rem;
     position: absolute;
     z-index: 1;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: 100%;
-    background-color: var(--grayed);
+    background-color: var(--black);
     .swiper-pagination-progressbar-fill {
       background-color: var(--red);
       width: 100%;

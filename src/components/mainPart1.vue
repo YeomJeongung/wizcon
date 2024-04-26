@@ -55,17 +55,20 @@ const onSlideChange = () => {
     @swiper="onSwiper"
     @slideChange="onSlideChange"
     :pagination="{
+      /*
       clickable: true,
       renderBullet: function (index, className) {
         return `<span class='${className} custom_blul1' data='${index}'></span>`
       }
+      */
+      type: 'progressbar'
     }"
     :autoplay="{
       delay: 2500,
       disableOnInteraction: false
     }"
     :modules="swiperModules"
-    class="h100vh main_slider"
+    class="h100vh works_p_slider"
   >
     <swiper-slide>
       <div class="h100 visual-img img1"></div>
