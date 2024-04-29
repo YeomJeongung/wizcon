@@ -71,13 +71,13 @@ const onSlideChange = () => {
     class="h100vh works_p_slider"
   >
     <swiper-slide>
-      <div class="h100 visual-img img1"></div>
+      <div class="h100 visual-img img3"></div>
     </swiper-slide>
     <swiper-slide>
       <div class="h100 visual-img img2"></div>
     </swiper-slide>
     <swiper-slide>
-      <div class="h100 visual-img img3"></div>
+      <div class="h100 visual-img img1"></div>
     </swiper-slide>
   </swiper>
 </template>

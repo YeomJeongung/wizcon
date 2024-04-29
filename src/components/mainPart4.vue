@@ -6,8 +6,10 @@ import Dialog from 'primevue/dialog'
 import noimg from '@/assets/images/logo.svg'
 
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Pagination } from 'swiper/modules'
-const swiperModules = [Pagination]
+import { Grid, Pagination } from 'swiper/modules'
+import 'swiper/css/grid'
+
+const swiperModules = [Grid, Pagination]
 
 const detailContents = ref('')
 const detailTitle = ref('')
@@ -46,7 +48,7 @@ const query = `
 query {
     boards(ids: 1857731749) 
     { name state permissions 
-      items_page {
+      items_page(limit: 100) {
       items 
       {
         name
@@ -89,6 +91,7 @@ onMounted(() => {
       if (res.data.boards[0].items_page.items.length == 0) {
         noitems.value = true
       }
+      console.log(items)
     })
 })
 
@@ -115,7 +118,7 @@ const returnJsonDataFile2 = (data, target) => {
 }
 </script>
 <template>
-  <div class="box1 contents flx-col flx-l">
+  <div class="box1 _a contents flx-col flx-l">
     <h2
       class="w2animation animation-duration-1000 animation-delay-500 animation-ease-in-out"
       v-animateonscroll.once="{
@@ -166,6 +169,9 @@ const returnJsonDataFile2 = (data, target) => {
           :autoplay="{
             delay: 3500,
             disableOnInteraction: false
+          }"
+          :grid="{
+            rows: 3
           }"
           :pagination="{
             clickable: true,
