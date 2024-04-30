@@ -90,7 +90,8 @@ const toggleActive = (itemName, event) => {
 
   if (event === 'click') {
     const targetElement = document.querySelector(`#${itemName}`)
-    const targetOffsetTop = targetElement.offsetTop - 96
+    const menuHeight = document.querySelector('.menu')
+    const targetOffsetTop = targetElement.offsetTop - menuHeight.offsetHeight
     window.scrollTo({
       top: targetOffsetTop,
       behavior: 'smooth' // 부드러운 스크롤을 위해 smooth 속성 사용
