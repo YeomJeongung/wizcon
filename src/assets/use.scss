@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
 
 :root {
+  --primary-color: #ef4136 !important;
   --red: #ef4136;
   --redRgb: 239, 65, 54;
   --white: #fff;
@@ -15,6 +16,33 @@
   --grayed: #ededed;
   --graye3: #e3e3e3;
   --graydb: #dbdbdb;
+}
+.c-btn-gray {
+  color: var(--black37);
+  background-color: transparent;
+  border: none;
+  &:hover {
+    opacity: 0.9;
+  }
+}
+.dblock {
+  display: block;
+}
+.p-sidebar-content {
+  * {
+    font-size: 0.875rem;
+  }
+  small {
+    color: var(--red);
+  }
+}
+.c-btn-red {
+  color: var(--white);
+  background-color: var(--red);
+  border: none;
+  &:hover {
+    opacity: 0.9;
+  }
 }
 
 html {
@@ -119,6 +147,12 @@ ol[role='list'] {
 .flx-v-t {
   align-items: flex-start;
 }
+.flx-v-e {
+  align-items: flex-start;
+}
+.flx-c-e {
+  justify-content: flex-end;
+}
 .flx-c {
   justify-content: center;
 }
@@ -130,6 +164,16 @@ ol[role='list'] {
 }
 .flx-sh {
   flex-shrink: 0;
+}
+.pdr2 {
+  padding-right: 2rem;
+}
+.pdr5 {
+  padding-right: 5rem;
+}
+.pdlr {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 .pdl10 {
   padding-left: 10rem;
@@ -443,6 +487,9 @@ ol[role='list'] {
 }
 .box1-t {
   padding-top: 8rem;
+}
+.dpnone {
+  display: none !important;
 }
 .box1-b {
   padding-bottom: 10rem;

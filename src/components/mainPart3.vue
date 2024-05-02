@@ -51,7 +51,7 @@ const handleMouseLeave = () => {
   <div class="part3-wrap box1">
     <div class="part3-txt flx-col flx-v">
       <h2
-        class="flx-row flx-v flx-c w2animation animation-duration-1000 animation-delay-500 animation-ease-in-out"
+        class="flx-row flx-v flx-c w2animation animation-duration-500 animation-ease-in-out"
         v-animateonscroll.once="{
           enterClass: 'fadeinleft opacity0',
           leaveClass: 'fadeoutleft opacity0'
@@ -61,7 +61,7 @@ const handleMouseLeave = () => {
       </h2>
 
       <div
-        class="flx-row flx-v flx-c font2-5 bold lineh w2animation animation-duration-1000 animation-delay-1000 animation-ease-in-out"
+        class="flx-row flx-v flx-c font2-5 bold lineh w2animation animation-duration-500 animation-ease-in-out"
         v-animateonscroll.once="{
           enterClass: 'fadeinleft opacity0',
           leaveClass: 'fadeoutleft opacity0'
@@ -75,7 +75,7 @@ const handleMouseLeave = () => {
         >
       </div>
       <div
-        class="flx-row flx-v flx-c font1 mt2 colorddd w2animation animation-duration-1000 animation-delay-1000 animation-ease-in-out"
+        class="flx-row flx-v flx-c font1 mt2 colorddd w2animation animation-duration-500 animation-ease-in-out"
         v-animateonscroll.once="{
           enterClass: 'fadeinleft opacity0',
           leaveClass: 'fadeoutleft opacity0'
@@ -88,7 +88,7 @@ const handleMouseLeave = () => {
         >
       </div>
       <div
-        class="nodrag blackbox flx-row animation-duration-1000 animation-delay-1000 animation-ease-in-out"
+        class="nodrag blackbox flx-row animation-duration-500 animation-ease-in-out"
         v-animateonscroll.once="{ enterClass: 'fadein opacity0', leaveClass: 'fadeout opacity0' }"
         @mouseleave="handleMouseLeave"
       >

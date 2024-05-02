@@ -3,15 +3,17 @@ import './assets/use.scss'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import PrimeVue from 'primevue/config';
-import AnimateOnScroll from 'primevue/animateonscroll';
-import Tooltip from 'primevue/tooltip';
+import PrimeVue from 'primevue/config'
+import AnimateOnScroll from 'primevue/animateonscroll'
+import ConfirmationService from 'primevue/confirmationservice'
+import Tooltip from 'primevue/tooltip'
 import App from './App.vue'
 
 const app = createApp(App)
 
 app.use(createPinia())
-app.use(PrimeVue);
-app.directive('tooltip', Tooltip);
-app.directive('animateonscroll', AnimateOnScroll);
+app.use(PrimeVue)
+app.directive('tooltip', Tooltip)
+app.directive('animateonscroll', AnimateOnScroll)
+app.use(ConfirmationService)
 app.mount('#app')

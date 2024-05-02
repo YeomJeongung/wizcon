@@ -64,7 +64,7 @@ const handleMouseLeave = () => {
 <template>
   <div class="box1-t contents flx-col flx-l">
     <h2
-      class="w2animation animation-duration-1000 animation-delay-500 animation-ease-in-out"
+      class="w2animation animation-duration-500 animation-ease-in-out"
       v-animateonscroll.once="{
         enterClass: 'fadeinleft opacity0',
         leaveClass: 'fadeoutleft opacity0'
@@ -75,7 +75,7 @@ const handleMouseLeave = () => {
 
     <div class="pdl11">
       <div
-        class="font2-3 bold lineh w2animation animation-duration-1000 animation-delay-1000 animation-ease-in-out"
+        class="font2-3 bold lineh w2animation animation-duration-500 animation-ease-in-out"
         v-animateonscroll.once="{
           enterClass: 'fadeinleft opacity0',
           leaveClass: 'fadeoutleft opacity0'
@@ -86,7 +86,7 @@ const handleMouseLeave = () => {
       </div>
 
       <div
-        class="font1 mt3 color999 w2animation animation-duration-1000 animation-delay-1000 animation-ease-in-out"
+        class="font1 mt3 color999 w2animation animation-duration-500 animation-ease-in-out"
         v-animateonscroll.once="{
           enterClass: 'fadeinleft opacity0',
           leaveClass: 'fadeoutleft opacity0'
@@ -98,7 +98,7 @@ const handleMouseLeave = () => {
   </div>
 
   <div
-    class="box1-b nodrag subslider animation-duration-1000 animation-delay-1000 animation-ease-in-out"
+    class="box1-b nodrag subslider animation-duration-500 animation-ease-in-out"
     v-animateonscroll.once="{ enterClass: 'fadein opacity0', leaveClass: 'fadeout opacity0' }"
   >
     <div @mouseleave="handleMouseLeave">

@@ -91,7 +91,6 @@ onMounted(() => {
       if (res.data.boards[0].items_page.items.length == 0) {
         noitems.value = true
       }
-      console.log(items)
     })
 })
 
@@ -120,7 +119,7 @@ const returnJsonDataFile2 = (data, target) => {
 <template>
   <div class="box1 _a contents flx-col flx-l">
     <h2
-      class="w2animation animation-duration-1000 animation-delay-500 animation-ease-in-out"
+      class="w2animation animation-duration-500 animation-ease-in-out"
       v-animateonscroll.once="{
         enterClass: 'fadeinleft opacity0',
         leaveClass: 'fadeoutleft opacity0'
@@ -131,7 +130,7 @@ const returnJsonDataFile2 = (data, target) => {
 
     <div class="pdl11">
       <div
-        class="font2-5 bold lineh w2animation animation-duration-1000 animation-delay-1000 animation-ease-in-out"
+        class="font2-5 bold lineh w2animation animation-duration-500 animation-ease-in-out"
         v-animateonscroll.once="{
           enterClass: 'fadeinleft opacity0',
           leaveClass: 'fadeoutleft opacity0'
@@ -143,7 +142,7 @@ const returnJsonDataFile2 = (data, target) => {
 
       <!--
       <div
-        class="font1 mt3 color999 w2animation animation-duration-1000 animation-delay-1000 animation-ease-in-out"
+        class="font1 mt3 color999 w2animation animation-duration-1000 animation-ease-in-out"
         v-animateonscroll.once="{
           enterClass: 'fadeinleft opacity0',
           leaveClass: 'fadeoutleft opacity0'
@@ -156,7 +155,7 @@ const returnJsonDataFile2 = (data, target) => {
 
     <div
       v-if="!noitems"
-      class="w100 animation-duration-1000 animation-delay-1000 animation-ease-in-out"
+      class="w100 animation-duration-1000 animation-ease-in-out"
       v-animateonscroll.once="{ enterClass: 'fadein opacity0', leaveClass: 'fadeout opacity0' }"
     >
       <div class="webzins flx-row flx-wrap gap3">
@@ -248,7 +247,7 @@ const returnJsonDataFile2 = (data, target) => {
 
     <div
       v-else
-      class="nolist w100 animation-duration-1000 animation-delay-1000 animation-ease-in-out"
+      class="nolist w100 animation-duration-1000 animation-ease-in-out"
       v-animateonscroll.once="{ enterClass: 'fadein opacity0', leaveClass: 'fadeout opacity0' }"
     >
       no items
