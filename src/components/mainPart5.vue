@@ -40,9 +40,7 @@
           placeholder=""
           aria-describedby="title-help"
         />
-        <small id="title-help" v-if="!itemNameTxt.isValid.value">{{
-          itemNameTxt.error.value
-        }}</small>
+        <small id="title-help">{{ itemNameTxt.error.value }}</small>
       </div>
       <h3 class="mt1">문의 내용</h3>
       <div class="flex flex-column gap-2">
@@ -56,9 +54,7 @@
           cols="30"
           placeholder=""
         />
-        <small id="cont-help" v-if="!longTextTxt.isValid.value">{{
-          longTextTxt.error.value
-        }}</small>
+        <small id="cont-help">{{ longTextTxt.error.value }}</small>
       </div>
       <h3 class="mt1">E-mail</h3>
       <div class="flex flex-column gap-2">
@@ -70,9 +66,9 @@
           placeholder=""
           aria-describedby="email-help"
         />
-        <small id="email-help" v-if="!emailTxt.isValid.value">{{ emailTxt.error.value }}</small>
+        <small id="email-help" style="margin-bottom: 0.5rem">{{ emailTxt.error.value }}</small>
       </div>
-      <div class="font0-5 color999" style="margin: 0.3rem">
+      <div class="font0-5 color999">
         WIZCON에서는 개인정보를 수집하지 않습니다. 문의하기를 통해 제공된 이메일 주소는 주로 연락을
         위한 목적으로 사용되며, Monday.com의 서비스를 통해 안전하게 보관됩니다. 또한, 고객 요청이
         있을 시 이메일 주소는 바로 삭제됩니다.
