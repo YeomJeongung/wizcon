@@ -25,9 +25,10 @@ const onSlideChange = () => {
       </div>
       <div class="lineh0">
         <div
-          class="txtsh font4 bold lineh w2animation animation-duration-1000 animation-delay-1000 animation-ease-in-out"
+          class="relative txtsh font4 bold lineh w2animation animation-duration-1000 animation-delay-1000 animation-ease-in-out"
           v-animateonscroll.once="{ enterClass: 'fadeinleft opacity0', leaveClass: 'fadeoutleft' }"
         >
+          <div class="d-box"><span></span><span></span><span></span></div>
           WELCOME TO
         </div>
         <div
