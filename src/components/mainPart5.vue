@@ -84,7 +84,7 @@
       <div class="contents flx-row flx-bet flx-v">
         <button
           class="qna norbtn colorfff bgred h100 font1 flx-row flx-c flx-v gap0-5"
-          @click="qnaVisible = true"
+          @click="qnaVisibleFn"
         >
           <span>문의하기</span>
         </button>
@@ -182,6 +182,9 @@ const emailTxt = useValidation('', (value) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? '' : '이메일이 아닙니다.'
   }
 })
+const qnaVisibleFn = () => {
+  qnaVisible.value = !qnaVisible.value
+}
 
 // Monday.com API 엑세스 토큰
 const accessToken =
