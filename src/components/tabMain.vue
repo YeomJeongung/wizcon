@@ -3,7 +3,7 @@
 import tabMenus from '@/components/tabMenu.vue'
 import tabDynamic from '@/components/tabView.vue'
 import Button from 'primevue/button'
-import { useTabStore } from '@/stores/tab'
+import { useTabStore } from '@/stores/tab.js'
 const tabStore = useTabStore()
 const addTab = (idx, nm, url) => {
   tabStore.addTabItem({ id: idx, name: nm, url: url })

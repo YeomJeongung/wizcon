@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed, watch } from 'vue'
-import { useTabStore } from '@/stores/tab'
+import { useTabStore } from '@/stores/tab.js'
 import TabMenu from 'primevue/tabmenu'
 
 const tabStore = useTabStore()
