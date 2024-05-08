@@ -12,6 +12,13 @@
 import { computed, shallowRef, watch, ref } from 'vue'
 import { useTabStore } from '@/stores/tab.js'
 
+/* page imports */
+import tabPage1 from '@/page/tabPage1.vue'
+import tabPage2 from '@/page/tabPage2.vue'
+import tabPage3 from '@/page/tabPage3.vue'
+import tabPage4 from '@/page/tabPage4.vue'
+/* page imports_ end */
+
 const tabStore = useTabStore()
 const tabCurItem = computed(() => tabStore.getCurTabItems())
 
@@ -23,7 +30,7 @@ const dynamicComponent = shallowRef(null)
 const loadDynamicComponent = async () => {
   const newItem = tabCurItem.value[0]
   if (newItem) {
-    const componentPath = `@/assets/page/${newItem.url}`
+    const componentPath = `../page/${newItem.url}`
     try {
       const { default: component } = await import(/* @vite-ignore */ componentPath)
       dynamicComponent.value = component
