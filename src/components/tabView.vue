@@ -35,7 +35,7 @@ const loadDynamicComponent = async () => {
     try {
       //const { default: component } = await import(/* @vite-ignore */ componentPath)
       //dynamicComponent.value = component
-      dynamicComponent.value = tabPage1
+      dynamicComponent.value = tabArr[newItem.id]
     } catch (error) {
       console.error('Error:', error)
     }
