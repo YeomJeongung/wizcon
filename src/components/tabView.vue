@@ -10,7 +10,7 @@
 
 <script setup>
 import { computed, shallowRef, watch, ref } from 'vue'
-import { useTabStore } from '@/stores/tab'
+import { useTabStore } from '@/stores/tab.js'
 
 const tabStore = useTabStore()
 const tabCurItem = computed(() => tabStore.getCurTabItems())
@@ -23,7 +23,7 @@ const dynamicComponent = shallowRef(null)
 const loadDynamicComponent = async () => {
   const newItem = tabCurItem.value[0]
   if (newItem) {
-    const componentPath = './' + (newItem.url || 'tabPage1.vue').substring(2)
+    const componentPath = './' + (newItem.url || 'tabPage1.vue')
     try {
       const { default: component } = await import(/* @vite-ignore */ componentPath)
       dynamicComponent.value = component
