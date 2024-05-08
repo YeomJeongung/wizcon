@@ -1,10 +1,7 @@
-<script setup>
-  import wizconMain from './components/index.vue'
-</script>
+<script setup></script>
 
 <template>
-  <wizconMain />
+  <router-view />
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
