@@ -19,11 +19,11 @@ watch(tabIdx, (newIdx) => {
     <div class="tabmenulist">
       <TabMenu :model="menuList" :activeIndex="tabIdxValue">
         <template #item="{ item }">
-          <div :class="['flex gap-2 p-2']">
-            <div @click="tabStore.addTabItem({ id: item.id, name: item.name, url: item.url })">
+          <div :class="['flex gap-2 align-items-center cursor-pointer']">
+            <div class="p-2" @click="tabStore.addTabItem({ id: item.id, name: item.name, url: item.url })">
               {{ item.name }}
             </div>
-            <span class="icon-time pr-2" @click="tabStore.closeTab(item.id)"> x </span>
+            <span class="icon-time pr-2 cursor-pointer" @click="tabStore.closeTab(item.id)"> x </span>
           </div>
         </template>
       </TabMenu>
