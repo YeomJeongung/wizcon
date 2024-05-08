@@ -23,7 +23,7 @@ const dynamicComponent = shallowRef(null)
 const loadDynamicComponent = async () => {
   const newItem = tabCurItem.value[0]
   if (newItem) {
-    const componentPath = `/components/${newItem.url}`
+    const componentPath = `./${newItem.url}`
     try {
       const { default: component } = await import(/* @vite-ignore */ componentPath)
       dynamicComponent.value = component
