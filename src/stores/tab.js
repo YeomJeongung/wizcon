@@ -32,6 +32,17 @@ export const useTabStore = defineStore('tab', () => ({
     this.previousNumbers.push(num);
     return num;
   },
+  tabMatch(id){
+    let matchedValue = null;
+    let rt = false;
+    Object.entries(this.idGenList).some(([key, value]) => {
+      if (key.toString() === id.toString()) {
+        matchedValue = value;
+        rt = true;
+      }
+    });
+    return [rt,matchedValue];
+  },
   addTabItem(item) {
     // 중복 체크
     const idgen = this.setIdGen(100,10000);
@@ -39,18 +50,11 @@ export const useTabStore = defineStore('tab', () => ({
       this.idGenList[item.id] = idgen;
       this.tabItems.push({ ...item })
     }
-    
-    let matchedValue = null;
-    const isMatch = Object.entries(this.idGenList).some(([key, value]) => {
-      if (key.toString() === item.id.toString()) {
-        matchedValue = value;
-        return true;
-      }
-    });
 
-    if(isMatch){
-      this.idGenList[item.id] = matchedValue;
-      item['idgen'] = matchedValue
+    const isMatch = this.tabMatch(item.id);
+    if(isMatch[0]){
+      this.idGenList[item.id] = isMatch[1];
+      item['idgen'] = isMatch[1]
     }
 
     this.addCurTabItem({ ...item })
@@ -72,13 +76,18 @@ export const useTabStore = defineStore('tab', () => ({
         newIndex = index - 1
       }
       this.setTabIdx(newIndex)
+
+      const isMatch = this.tabMatch(this.tabItems[newIndex].id);
+      if(isMatch[0]){
+        this.tabItems[newIndex].idgen = isMatch[1]
+      }
+      
       this.addCurTabItem(this.tabItems[newIndex])
     }
 
     if (this.tabItems.length === 0) {
       this.delCurTabItems()
     }
-    
     //idgen tab 삭제
     const obj = this.idGenList;
     if (Object.prototype.hasOwnProperty.call(obj, id)) {
