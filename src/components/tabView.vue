@@ -1,6 +1,5 @@
 <template>
   <div class="box-white b100">
-    <!-- 동적으로 로드된 컴포넌트를 렌더링 -->
     <keep-alive>
       <component :is="dynamicComponent" v-if="dynamicComponent" :key="tempId" />
       <div class="mt-3" v-else>no data</div>
@@ -24,10 +23,9 @@ const tabStore = useTabStore()
 const tabCurItem = computed(() => tabStore.getCurTabItems())
 
 let tempId = ref(0)
-// 동적 컴포넌트를 담을 변수 ref안됨.
 const dynamicComponent = shallowRef(null)
 
-// URL을 기반으로 동적 컴포넌트 로드
+// 빌드시 경로 찾을 수 없어.... 위 따로 import 방법을 찾아야함.
 const loadDynamicComponent = async () => {
   const newItem = tabCurItem.value[0]
   if (newItem) {
@@ -43,7 +41,6 @@ const loadDynamicComponent = async () => {
   }
 }
 
-//변경
 watch(
   tabCurItem,
   () => {

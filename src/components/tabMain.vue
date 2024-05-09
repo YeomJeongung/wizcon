@@ -1,5 +1,4 @@
 <script setup>
-//import { ref, defineProps } from 'vue'
 import tabMenus from '@/components/tabMenu.vue'
 import tabDynamic from '@/components/tabView.vue'
 import Button from 'primevue/button'

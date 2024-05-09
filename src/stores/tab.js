@@ -1,11 +1,9 @@
 import { defineStore } from 'pinia'
 
 export const useTabStore = defineStore('tab', () => ({
-  // 상태
   tabItems: [],
   curtabItems: [],
   curIdx: 0,
-  // getter
   getTabItems() {
     return this.tabItems
   },
