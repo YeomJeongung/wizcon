@@ -1,4 +1,5 @@
 <script setup>
+import { onMounted } from 'vue'
 import tabMenus from '@/components/tabMenu.vue'
 import tabDynamic from '@/components/tabView.vue'
 import Button from 'primevue/button'
@@ -7,6 +8,11 @@ const tabStore = useTabStore()
 const addTab = (idx, nm, url) => {
   tabStore.addTabItem({ id: idx, name: nm, url: url })
 }
+onMounted(() => {
+  //로컬스토리지 사용 새로고침 및 인덱스 탭 저장
+  tabStore.addLocals();
+  tabStore.initLocalCur()
+})
 </script>
 <template>
   <div class="box-white h100 p-3">
