@@ -37,7 +37,7 @@ const loadDynamicComponent = async () => {
     } catch (error) {
       console.error('Error:', error)
     }
-    tempId.value = newItem.id
+    tempId.value = newItem.idgen
   }
 }
 
