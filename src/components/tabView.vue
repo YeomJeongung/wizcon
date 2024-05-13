@@ -17,12 +17,6 @@ import tabPage1 from '../components/page/tabPage1.vue'
 import tabPage2 from '../components/page/tabPage2.vue'
 import tabPage3 from '../components/page/tabPage3.vue'
 import tabPage4 from '../components/page/tabPage4.vue'
-const tabArr = [
-  tabPage1,
-  tabPage2,
-  tabPage3,
-  tabPage4
-]
 /* page imports_ end */
 
 const tabStore = useTabStore()
@@ -31,20 +25,12 @@ const tabCurItem = computed(() => tabStore.getCurTabItems())
 let tempId = ref(0)
 const dynamicComponent = shallowRef(null)
 
-// 빌드시 경로 찾을 수 없어.... 위 따로 import 방법을 찾아야함.
+// 빌드시 경로 찾을 수 없어.... 
 const loadDynamicComponent = async () => {
   const newItem = tabCurItem.value[0]
   if (newItem) {
     try {
-      if(newItem.id == 'dashboard'){
-        dynamicComponent.value = dashboard
-      }else{
-        //dynamicComponent.value = tabArr[newItem.id]
-        console.log(newItem.url);
-        const componentPath = `../components/page/${newItem.url}`
-        const { default: component } = await import(/* @vite-ignore */ componentPath)
-        dynamicComponent.value = component
-      }
+      dynamicComponent.value = eval(newItem.url)
     } catch (error) {
       console.error('Error:', error)
     }

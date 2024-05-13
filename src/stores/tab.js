@@ -9,7 +9,7 @@ export const useTabStore = defineStore('tab', () => ({
   tabLocalsId: 'tab_data_56894666',
   tabLocalsIdx: 'tab_idx_56894666',
   tabLocalsCur: 'tab_cur_56894666',
-  dashboardItem : { id: 'dashboard', name: 'dashboard', url: 'dashboard.vue' },
+  dashboardItem : { id: 'dashboard', name: 'dashboard', url: 'dashboard' },
 
   // 탭 아이템 리스트 반환
   getTabItems() {

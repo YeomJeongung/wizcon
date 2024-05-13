@@ -24,10 +24,10 @@ const menuItems = ref([
   {
     label: '사용자관리',
     items: [
-        { id : 0, label: '회원관리', url: 'tabPage1.vue' },
-        { id : 1, label: '관리자 등록', url: 'tabPage2.vue' },
-        { id : 2, label: 'API 관리', url: 'tabPage3.vue' },
-        { id : 3, label: '회원등록', url: 'tabPage4.vue' }
+        { id : 0, label: '회원관리', url: 'tabPage1' },
+        { id : 1, label: '관리자 등록', url: 'tabPage2' },
+        { id : 2, label: 'API 관리', url: 'tabPage3' },
+        { id : 3, label: '회원등록', url: 'tabPage4' }
     ]
   }
 ])
