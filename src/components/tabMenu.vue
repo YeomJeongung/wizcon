@@ -13,23 +13,24 @@ const tabIdxValue = ref(tabIdx.value)
 watch(tabIdx, (newIdx) => {
   tabIdxValue.value = newIdx
 })
+watch(tabItems, (newList) => {
+  menuList.value = newList
+})
 </script>
 <template>
-  <div class="white-box">
-    <div class="tabmenulist">
-      <TabMenu :model="menuList" :activeIndex="tabIdxValue">
-        <template #item="{ item }">
-          <div :class="['flex align-items-center cursor-pointer h-full']">
-            <div class="p-2" @click="tabStore.addTabItem({ id: item.id, name: item.name, url: item.url })">
-              {{ item.name }}
-            </div>
-            <span class="flex align-items-center h-full pl-2 icon-time pr-2 cursor-pointer" @click="tabStore.closeTab(item.id)">
-              <span>x</span>
-            </span>
+  <div class="tabmenulist">
+    <TabMenu :model="menuList" :activeIndex="tabIdxValue" v-if="menuList.length > 0">
+      <template #item="{ item }">
+        <div class="tab-wrap">
+          <div class="tab-link" @click="tabStore.addTabItem({ id: item.id, name: item.name, url: item.url })">
+            {{ item.name }}
           </div>
-        </template>
-      </TabMenu>
-    </div>
+          <span class="tab-icon" v-tooltip.top="{ value: 'close', showDelay: 0, hideDelay: 100 }" @click="tabStore.closeTab(item.id)">
+            <i class="pi pi-times"></i>
+          </span>
+        </div>
+      </template>
+    </TabMenu>
   </div>
 </template>
 <style scoped lang="scss"></style>

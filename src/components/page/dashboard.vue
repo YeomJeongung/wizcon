@@ -3,7 +3,7 @@ import InputText from 'primevue/inputtext'
 </script>
 <template>
   <div>
-    <h2>tabPage1.vue</h2>
+    dashboard
   </div>
 </template>
 

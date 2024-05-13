@@ -2,11 +2,8 @@
 import InputText from 'primevue/inputtext'
 </script>
 <template>
-  <div class="flex flex-column gap-2 p-3">
+  <div>
     <h2>tabPage2.vue</h2>
-
-    <label for="username">2번탭 내용이요</label>
-    <InputText id="username" />
   </div>
 </template>
 

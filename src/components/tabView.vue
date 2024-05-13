@@ -2,7 +2,7 @@
   <div class="box-white b100">
     <keep-alive>
       <component :is="dynamicComponent" v-if="dynamicComponent" :key="tempId" />
-      <div class="mt-3" v-else>no data</div>
+      <component :is="dashboard" v-else key="dashboard" />
     </keep-alive>
   </div>
 </template>
@@ -12,11 +12,17 @@ import { computed, shallowRef, watch, ref } from 'vue'
 import { useTabStore } from '@/stores/tab.js'
 
 /* page imports */
+import dashboard from '../components/page/dashboard.vue'
 import tabPage1 from '../components/page/tabPage1.vue'
 import tabPage2 from '../components/page/tabPage2.vue'
 import tabPage3 from '../components/page/tabPage3.vue'
 import tabPage4 from '../components/page/tabPage4.vue'
-const tabArr = [tabPage1,tabPage2,tabPage3,tabPage4]
+const tabArr = [
+  tabPage1,
+  tabPage2,
+  tabPage3,
+  tabPage4
+]
 /* page imports_ end */
 
 const tabStore = useTabStore()
@@ -29,15 +35,22 @@ const dynamicComponent = shallowRef(null)
 const loadDynamicComponent = async () => {
   const newItem = tabCurItem.value[0]
   if (newItem) {
-    //const componentPath = `../page/${newItem.url}`
     try {
-      //const { default: component } = await import(/* @vite-ignore */ componentPath)
-      //dynamicComponent.value = component
-      dynamicComponent.value = tabArr[newItem.id]
+      if(newItem.id == 'dashboard'){
+        dynamicComponent.value = dashboard
+      }else{
+        //dynamicComponent.value = tabArr[newItem.id]
+        console.log(newItem.url);
+        const componentPath = `../components/page/${newItem.url}`
+        const { default: component } = await import(/* @vite-ignore */ componentPath)
+        dynamicComponent.value = component
+      }
     } catch (error) {
       console.error('Error:', error)
     }
     tempId.value = newItem.idgen
+  }else{
+    dynamicComponent.value = dashboard
   }
 }
 

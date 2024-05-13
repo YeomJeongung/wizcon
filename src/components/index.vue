@@ -6,6 +6,7 @@ import mainPart2 from './mainPart2.vue'
 import mainPart3 from './mainPart3.vue'
 import mainPart4 from './mainPart4.vue'
 import mainPart5 from './mainPart5.vue'
+import '../assets/use.scss'
 
 const scrollTop = ref(0)
 const addTopbg = ref(false)

@@ -3,12 +3,13 @@ import { defineStore } from 'pinia'
 export const useTabStore = defineStore('tab', () => ({
   tabItems: [],
   curtabItems: [],
-  curIdx: 0,
+  curIdx: -1,
   previousNumbers: [],
   idGenList: {},
   tabLocalsId: 'tab_data_56894666',
   tabLocalsIdx: 'tab_idx_56894666',
   tabLocalsCur: 'tab_cur_56894666',
+  dashboardItem : { id: 'dashboard', name: 'dashboard', url: 'dashboard.vue' },
 
   // 탭 아이템 리스트 반환
   getTabItems() {
@@ -74,8 +75,9 @@ export const useTabStore = defineStore('tab', () => ({
     if (this.getLocalsItems()) {
       const locals = JSON.parse(this.getLocalsItems());
       locals.forEach(item => {
-        this.addTabItem(item, 'mount');
+        this.addTabItem(item, 'mount');  
       });
+      this.initLocalCur();
     }
   },
   getLocalsItems() {
@@ -100,6 +102,10 @@ export const useTabStore = defineStore('tab', () => ({
     const cur = JSON.parse(localStorage.getItem(this.tabLocalsCur));
     this.addCurTabItem(cur);
     this.initLocalIdx();
+  },
+  delLocalId() {
+    // 로컬 스토리지에서 인덱스 제거
+    localStorage.removeItem(this.tabLocalsId);
   },
   delLocalIdx() {
     // 로컬 스토리지에서 인덱스 제거
@@ -136,21 +142,17 @@ export const useTabStore = defineStore('tab', () => ({
       item['idgen'] = isMatch[1];
     }
     
-    // 현재 탭 추가
-    this.addCurTabItem({ ...item });
-    
-    // 현재 탭 인덱스 설정
-    this.setTabIdx(this.tabItems.findIndex((fitem) => fitem.id === item.id));
-    
-    // 로컬 아이템 설정
-    this.setLocalsItems(item);
-    
-    // 마운트 타입이 아닌 경우 URL 및 로컬 인덱스 및 현재 항목 설정
     if (type !== 'mount') {
+      // 현재 탭 추가
+      this.addCurTabItem({ ...item });
+      this.setTabIdx(this.tabItems.findIndex((fitem) => fitem.id === item.id));
+      // 로컬 아이템 설정
+      this.setLocalsItems(item);
       //this.setUrl(item.url);
       this.setLocalIdx(this.tabItems.findIndex((fitem) => fitem.id === item.id));
       this.setLocalCur({ ...item });
     }
+    
   },
   setUrl(url) {
   // URL을 해시로 설정
@@ -198,8 +200,9 @@ export const useTabStore = defineStore('tab', () => ({
       this.setLocalCur(this.tabItems[newIndex]);
     } else {
       // 탭이 없는 경우 처리
-      this.delCurTabItems();
+      //this.delCurTabItems();
       //this.delUrl();
+      this.addCurTabItem(this.dashboardItem);
       this.delLocalIdx();
       this.delLocalCur();
     }
@@ -207,5 +210,18 @@ export const useTabStore = defineStore('tab', () => ({
     // idGenList 및 로컬 아이템 삭제
     delete this.idGenList[id];
     this.delLocalsItem(id);
+  },
+  dashboard(){
+    this.addCurTabItem(this.dashboardItem);
+    this.setTabIdx(-1);
+    this.setLocalCur(this.dashboardItem);
+    this.setLocalIdx(-1);
+  },
+  reloadTab(){
+    this.tabItems = []
+    this.delCurTabItems()
+    this.delLocalIdx()
+    this.delLocalId()
+    this.delLocalCur()
   }
 }))
