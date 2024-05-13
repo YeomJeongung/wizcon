@@ -17,6 +17,12 @@ import tabPage1 from '../components/page/tabPage1.vue'
 import tabPage2 from '../components/page/tabPage2.vue'
 import tabPage3 from '../components/page/tabPage3.vue'
 import tabPage4 from '../components/page/tabPage4.vue'
+const tabObj = {
+  tabPage1 : tabPage1,
+  tabPage2 : tabPage2,
+  tabPage3 : tabPage3,
+  tabPage4 : tabPage4
+}
 /* page imports_ end */
 
 const tabStore = useTabStore()
@@ -30,7 +36,7 @@ const loadDynamicComponent = async () => {
   const newItem = tabCurItem.value[0]
   if (newItem) {
     try {
-      dynamicComponent.value = eval(newItem.url)
+      dynamicComponent.value = tabObj[newItem.url]
     } catch (error) {
       console.error('Error:', error)
     }
