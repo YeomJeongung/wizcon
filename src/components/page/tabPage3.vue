@@ -3,7 +3,7 @@ import InputText from 'primevue/inputtext'
 </script>
 <template>
   <div>
-    <h2>tabPage3.vue</h2>
+    page3
   </div>
 </template>
 

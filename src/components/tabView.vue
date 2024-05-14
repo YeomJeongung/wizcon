@@ -1,10 +1,8 @@
 <template>
-  <div class="box-white b100">
-    <keep-alive>
-      <component :is="dynamicComponent" v-if="dynamicComponent" :key="tempId" />
-      <component :is="dashboard" v-else key="dashboard" />
-    </keep-alive>
-  </div>
+  <keep-alive>
+    <component :is="dynamicComponent" v-if="dynamicComponent" :key="tempId" />
+    <component :is="dashboard" v-else key="dashboard" />
+  </keep-alive>
 </template>
 
 <script setup>
@@ -13,6 +11,7 @@ import { useTabStore } from '@/stores/tab.js'
 
 /* page imports */
 import dashboard from '../components/page/dashboard.vue'
+import notfound from '../components/page/notfound.vue'
 import tabPage1 from '../components/page/tabPage1.vue'
 import tabPage2 from '../components/page/tabPage2.vue'
 import tabPage3 from '../components/page/tabPage3.vue'
@@ -36,7 +35,13 @@ const loadDynamicComponent = async () => {
   const newItem = tabCurItem.value[0]
   if (newItem) {
     try {
-      dynamicComponent.value = tabObj[newItem.url]
+      if(tabObj[newItem.url]){
+        dynamicComponent.value = tabObj[newItem.url]
+      }else if(tabStore.menuActive === 'dashboard'){
+        dynamicComponent.value = dashboard
+      }else{
+        dynamicComponent.value = notfound
+      }
     } catch (error) {
       console.error('Error:', error)
     }

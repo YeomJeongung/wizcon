@@ -6,6 +6,7 @@ export const useTabStore = defineStore('tab', () => ({
   curIdx: -1,
   previousNumbers: [],
   idGenList: {},
+  menuActive : 'dashboard',
   tabLocalsId: 'tab_data_56894666',
   tabLocalsIdx: 'tab_idx_56894666',
   tabLocalsCur: 'tab_cur_56894666',
@@ -100,8 +101,11 @@ export const useTabStore = defineStore('tab', () => ({
   initLocalCur() {
     // 로컬 스토리지에서 현재 아이템 가져와서 현재 탭 아이템으로 추가 및 초기화
     const cur = JSON.parse(localStorage.getItem(this.tabLocalsCur));
-    this.addCurTabItem(cur);
-    this.initLocalIdx();
+    if(cur){
+      this.addCurTabItem(cur);
+      this.initLocalIdx();
+      this.menuActive = cur.url
+    }
   },
   delLocalId() {
     // 로컬 스토리지에서 인덱스 제거
@@ -141,6 +145,8 @@ export const useTabStore = defineStore('tab', () => ({
       this.idGenList[item.id] = isMatch[1];
       item['idgen'] = isMatch[1];
     }
+
+    this.menuActive = item.url
     
     if (type !== 'mount') {
       // 현재 탭 추가
@@ -198,6 +204,8 @@ export const useTabStore = defineStore('tab', () => ({
       //this.setUrl(this.tabItems[newIndex].url);
       this.setLocalIdx(newIndex);
       this.setLocalCur(this.tabItems[newIndex]);
+
+      this.menuActive = this.tabItems[newIndex].url
     } else {
       // 탭이 없는 경우 처리
       //this.delCurTabItems();
@@ -205,6 +213,7 @@ export const useTabStore = defineStore('tab', () => ({
       this.addCurTabItem(this.dashboardItem);
       this.delLocalIdx();
       this.delLocalCur();
+      this.menuActive = 'dashboard'
     }
     
     // idGenList 및 로컬 아이템 삭제
@@ -212,6 +221,7 @@ export const useTabStore = defineStore('tab', () => ({
     this.delLocalsItem(id);
   },
   dashboard(){
+    this.menuActive = 'dashboard'
     this.addCurTabItem(this.dashboardItem);
     this.setTabIdx(-1);
     this.setLocalCur(this.dashboardItem);
@@ -223,5 +233,6 @@ export const useTabStore = defineStore('tab', () => ({
     this.delLocalIdx()
     this.delLocalId()
     this.delLocalCur()
+    this.menuActive = 'dashboard'
   }
 }))

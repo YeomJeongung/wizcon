@@ -29,6 +29,12 @@ const menuItems = ref([
         { id : 2, label: 'API 관리', url: 'tabPage3' },
         { id : 3, label: '회원등록', url: 'tabPage4' }
     ]
+  },
+  {
+    label: '설정',
+    items: [
+        { id : 500, label: '페이지 설정', url: 'tabPage6' },
+    ]
   }
 ])
 const menu = ref();
@@ -43,7 +49,7 @@ const toggle = (event) => {
       <Button type="button" icon="pi pi-ellipsis-v" @click="toggle" aria-haspopup="true" aria-controls="overlay_menu" v-show="false" />
       <!--나중에-->
 
-      <div class="overflow-x-hidden overflow-y-auto h-full">
+      <div class="overflow-hidden h-full">
         <Menu :model="menuItems" ref="menu" :popup="false">
           <template #start>
             <div class="logo" @click="dashboard()">
@@ -54,12 +60,13 @@ const toggle = (event) => {
             <span>{{ item.label }}</span>
           </template>
           <template #item="{ item, props }">
-              <a v-ripple class="flex align-items-center" v-bind="props.action" @click="addTab(item.id, item.label, item.url)">
-                {{ item.label }}
-              </a>
+              <div :class="[item.url == tabStore.menuActive ? 'active':'']">
+                <a v-ripple class="flex align-items-center" v-bind="props.action" @click="addTab(item.id, item.label, item.url)">
+                  {{ item.label }}
+                </a>
+              </div>
           </template>
           <template #end>
-              end
           </template>
         </Menu>
       </div>
