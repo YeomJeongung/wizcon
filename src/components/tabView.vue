@@ -10,6 +10,10 @@
         </div>
       </template>
     </Dialog>
+    <div class="notfound">
+      <div><i class="pi pi-spin pi-cog" style="font-size: 2rem"></i></div>
+      <span>You are currently working in a layer popup...</span>
+    </div>
   </div>
   <div class="h-full" v-show="dynmaicType == 'tab' || !dynmaicType">
     <keep-alive>
@@ -54,6 +58,7 @@ const loadDynamicComponent = async () => {
   const newItem = tabCurItem.value[0]
   if (newItem) {
     try {
+      dynmaicType.value = 'tab'
       dynmaicPopshow.value = false
       if(tabObj[newItem.url]){
         if(newItem.type === 'tab'){
