@@ -11,7 +11,7 @@ export const useTabStore = defineStore('tab', () => ({
   tabLocalsIdx: 'tab_idx_56894666',
   tabLocalsCur: 'tab_cur_56894666',
   dashboardItem : { id: 'dashboard', name: 'dashboard', url: 'dashboard' },
-
+  tabItemsLocal : [],
   // 탭 아이템 리스트 반환
   getTabItems() {
     return this.tabItems;
@@ -71,6 +71,9 @@ export const useTabStore = defineStore('tab', () => ({
     arr.push(item);
     localStorage.setItem(this.tabLocalsId, JSON.stringify(arr));
   },
+  setLocalsItemsAll(item) {
+    this.tabItemsLocal.push(item)
+  },
   // 로컬 스토리지에 저장된 아이템 추가
   addLocals() {
     if (this.getLocalsItems()) {
@@ -78,6 +81,8 @@ export const useTabStore = defineStore('tab', () => ({
       locals.forEach(item => {
         this.addTabItem(item, 'mount');  
       });
+      this.delLocalId()
+      localStorage.setItem(this.tabLocalsId, JSON.stringify(this.tabItemsLocal));
       this.initLocalCur();
     }
   },
@@ -100,9 +105,12 @@ export const useTabStore = defineStore('tab', () => ({
   },
   initLocalCur() {
     // 로컬 스토리지에서 현재 아이템 가져와서 현재 탭 아이템으로 추가 및 초기화
-    const cur = JSON.parse(localStorage.getItem(this.tabLocalsCur));
+    //const cur = JSON.parse(localStorage.getItem(this.tabLocalsCur));
+    const localsIdx = JSON.parse(localStorage.getItem(this.tabLocalsIdx));
+    const cur = JSON.parse(this.getLocalsItems())[localsIdx];
     if(cur){
       this.addCurTabItem(cur);
+      this.setLocalCur(cur);
       this.initLocalIdx();
       this.menuActive = cur.url
     }
@@ -157,6 +165,8 @@ export const useTabStore = defineStore('tab', () => ({
       //this.setUrl(item.url);
       this.setLocalIdx(this.tabItems.findIndex((fitem) => fitem.id === item.id));
       this.setLocalCur({ ...item });
+    }else{
+      this.setLocalsItemsAll(item)
     }
     
   },

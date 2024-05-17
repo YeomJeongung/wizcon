@@ -17,6 +17,29 @@
   --graye3: #e3e3e3;
   --graydb: #dbdbdb;
   --widthdbox: 0.5rem;
+
+  --primary-50: #ffefee;
+  --primary-100: #f8d1ce;
+  --primary-200: #fccbc7;
+  --primary-300: #fa867e;
+  --primary-400: #ee6056;
+  --primary-500: #ef4136;
+  --primary-600: #c53228;
+  --primary-700: #8f2018;
+  --primary-800: #57130e;
+  --primary-900: #410a06;
+}
+.p-button{
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+.p-button.p-button-outlined{
+  background-color: var(--white);
+  color: var(--primary-color);
+  border-color: var(--primary-300)
+}
+.p-button.p-button-outlined:not(:disabled):hover{
+ background-color: var(--primary-50); 
 }
 .p-confirm-popup .p-confirm-popup-icon{
   font-size: 1rem!important

@@ -51,7 +51,7 @@ watch(tabItems, (newList) => {
       <TabMenu :model="menuList" :activeIndex="tabIdxValue" v-if="menuList.length > 0">
         <template #item="{ item }">
           <div class="tab-wrap">
-            <div class="tab-link" @click="tabStore.addTabItem({ id: item.id, name: item.name, url: item.url })">
+            <div class="tab-link" @click="tabStore.addTabItem({ id: item.id, name: item.name, url: item.url, type : item.type })">
               {{ item.name }}
             </div>
             <span class="tab-icon" v-tooltip.top="{ value: 'close' }" @click="tabStore.closeTab(item.id)">

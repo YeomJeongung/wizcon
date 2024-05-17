@@ -1,13 +1,30 @@
 <template>
-  <keep-alive>
-    <component :is="dynamicComponent" v-if="dynamicComponent" :key="tempId" />
-    <component :is="dashboard" v-else key="dashboard" />
-  </keep-alive>
+  <div class="h-full" v-show="dynmaicType == 'popup'">
+    <Dialog :visible="dynmaicPopshow" modal>
+      <template #container="{ closeCallback }">
+        <div class="p-3">
+          <div class="mb-2">
+            <strong class="text-lg">{{ tabCurItem[0].name }}</strong>
+          </div>
+          <component :is="dynamicComponent" v-if="dynamicComponent" :key="tempId" />
+        </div>
+      </template>
+    </Dialog>
+  </div>
+  <div class="h-full" v-show="dynmaicType == 'tab' || !dynmaicType">
+    <keep-alive>
+      <component :is="dynamicComponent" v-if="dynamicComponent" :key="tempId" />
+      <component :is="dashboard" v-else key="dashboard" />
+    </keep-alive>
+  </div>
+  
 </template>
 
 <script setup>
 import { computed, shallowRef, watch, ref } from 'vue'
 import { useTabStore } from '@/stores/tab.js'
+import Dialog from 'primevue/dialog';
+import Button from 'primevue/button';
 
 /* page imports */
 import dashboard from '../components/page/dashboard.vue'
@@ -29,13 +46,24 @@ const tabCurItem = computed(() => tabStore.getCurTabItems())
 
 let tempId = ref(0)
 const dynamicComponent = shallowRef(null)
+const dynmaicType = ref('tab')
+const dynmaicPopshow = ref(false)
 
 // 빌드시 경로 찾을 수 없어.... 
 const loadDynamicComponent = async () => {
   const newItem = tabCurItem.value[0]
   if (newItem) {
     try {
+      dynmaicPopshow.value = false
       if(tabObj[newItem.url]){
+        if(newItem.type === 'tab'){
+          dynmaicType.value = 'tab'
+        }else if(newItem.type === 'popup'){
+          dynmaicType.value = 'popup'
+          dynmaicPopshow.value = true
+        }else{
+          dynmaicType.value = 'tab' 
+        }
         dynamicComponent.value = tabObj[newItem.url]
       }else if(tabStore.menuActive === 'dashboard'){
         dynamicComponent.value = dashboard
