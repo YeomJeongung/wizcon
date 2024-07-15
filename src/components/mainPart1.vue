@@ -42,7 +42,7 @@ const onSlideChange = () => {
         class="txtsh colordb font1 mt2 w2animation animation-duration-1000 animation-delay-1500 animation-ease-in-out"
         v-animateonscroll.once="{ enterClass: 'fadeinleft opacity0', leaveClass: 'fadeoutleft' }"
       >
-        위즈컨은 스마트 단말 제조 및 B2C2B 온라인 서비스를 제공하는 기업에서 10년 이상 서비스기획과
+        위즈컨은 B2C2B 온라인 서비스를 제공하는 기업에서 10년 이상 서비스기획과
         개발, 사업화를 추진해 온 핵심 인력과<br />
         IT 서비스 회사에서 다양한 산업 전반에 걸친 정보시스템 컨설팅 및 구축 경험을 보유한 IT
         Specialist들이 모여 설립한 회사입니다.
